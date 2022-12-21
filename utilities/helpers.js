@@ -76,3 +76,9 @@ export function filterSubPageByUrl(parentPage, url){
       );
       return subPage[0];
 }
+
+export function filterPageMapBySlugAndCollection(map, collection, slug) {
+  const page = map.filter((page) => page["value"]["collection"] === collection && page["value"]["slug"] === slug);
+
+  return page[0];
+}
