@@ -1,7 +1,7 @@
 const AppFooter = () => {
   return (
     <footer className="py-20 md:py-10">
-      <div class="m-auto md:w-10/12 lg:w-8/12 xl:w-6/12 text-center">
+      <div className="m-auto md:w-10/12 lg:w-8/12 xl:w-6/12 text-center">
         <div>
           Sample application by
           <a

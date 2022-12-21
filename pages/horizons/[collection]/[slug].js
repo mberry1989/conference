@@ -11,7 +11,6 @@ export default function AgendaItemDetail({ item }) {
   const router = useRouter();
   return (
     <div className={styles.container}>
-      <AppHeader />
       <AppHero />
       <div className="w-full flex justify-center">
         <div className="mt-8 sm:w-10/12 md:w-1/2">
@@ -36,7 +35,7 @@ export default function AgendaItemDetail({ item }) {
   );
 }
 
-export async function getStaticPaths({ context }) {
+export async function getStaticPaths() {
   const response = await deliveryClient
     .items()
     .type("agenda_item")
