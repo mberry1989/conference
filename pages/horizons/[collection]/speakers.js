@@ -20,7 +20,7 @@ export default function Speakers({ eventPage, page, agendaSpeakers }) {
 
   return (
     <div className={styles.container}>
-      <AppHeader backBtn={true} />
+      <AppHeader collection= {page.system.collection} hasExtendedNav={true} backBtn={false} />
       <div className={styles.container}>
         <AppHero title={eventPage.elements.title.value} />
         <div className="mt-8 text-center text-2xl font-bold text-gray-800 dark:text-white md:text-4xl">
@@ -75,7 +75,6 @@ export async function getStaticProps({ params }) {
   const globalSpeakers = filterItemsByCollection(speakers); // global is default
 
   const agendaSpeakers = [...speakersByCollection, ...globalSpeakers];
-
   // ==end dynamic speakers list==
 
   return {

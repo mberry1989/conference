@@ -1,5 +1,5 @@
 import { writeFile } from "fs"
-import deliveryClient from "../../utilities/client";
+import { getRootByCodenameAsync } from "../../utilities/helpers";
 
 export default async function handler(req, res) {
   if (req.query.secret !== process.env.NAVBUILDER_SECRET) {
@@ -10,12 +10,8 @@ export default async function handler(req, res) {
 
   var urlArr = [];
 
-  const response = await deliveryClient
-    .item("root")
-    .depthParameter(5)
-    .toPromise();
-
-  const mappings = buildNavigationMap(response.data.item, urlArr);
+  const response = await getRootByCodenameAsync("root")
+  const mappings = buildNavigationMap(response.item, urlArr);
 
   res.status(200).json(mappings);
 }
@@ -54,13 +50,14 @@ function getSubpages(page, urlArr, parentUrl = null) {
 
 function buildUrl(subpageUrl, collection, parentUrl = null) {
   let url;
+  const rootPath = 'horizons'
   if (parentUrl) {
     return (url = `${parentUrl}/${subpageUrl}`);
   }
   if (collection) {
-    return (url = `/${collection}/${subpageUrl}`);
+    return (url = `/${rootPath}/${collection}/${subpageUrl}`);
   }
-  return (url = `/${subpageUrl}`);
+  return (url = `/${rootPath}/${subpageUrl}`);
 }
 
 function buildMapObject(subpage, url) {
@@ -68,6 +65,7 @@ function buildMapObject(subpage, url) {
     codename: subpage.system.codename,
     value: {
       url: url,
+      slug: subpage.elements.url.value,
       collection: subpage.system.collection,
       language: subpage.system.language,
     },
