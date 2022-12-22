@@ -11,7 +11,7 @@ const AgendaItem = ({ item }) => {
 
   return (
     <>
-      <div className="w-full flex ">
+      <div className="w-full flex border-t border-b">
         <div className="text-left">
           <div className="w-full text-lg font-semibold text-gray-700 dark:text-white">
             <div className="w-full mt-2 text-gray-500 text-2xl">

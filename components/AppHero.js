@@ -32,14 +32,14 @@ const AppHero = ({ title, welcomeContent = [], isLanding = false }) => {
       </div>
       <div>
         <div className="relative pt-36 ml-auto">
-          <div className="lg:w-2/3 text-center mx-auto">
+          <div className="lg:w-full text-center mx-auto">
             <h1 className="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl">
               {title}
-              <div className="text-primary dark:text-white">
+              <div className="text-primary dark:text-white border-t p-4 text-3xl md:text-4xl xl:text-5xl">
                 {welcome.elements.headline.value}
               </div>
             </h1>
-            <div className="mt-8 text-2xl text-gray-700 dark:text-gray-300 text-center">
+            <div className="text-2xl text-gray-700 dark:text-gray-300 text-center">
               <div
                 dangerouslySetInnerHTML={{
                   __html: welcome.elements.body.value,
