@@ -33,18 +33,6 @@ export function getCollectionPathsFromEnv(){
   return collectionPaths
 }
 
-export function getPageMap(codename){
-  try {
-    const data = readFileSync('./nav.json', 'utf8');
-    const map = JSON.parse(data);
-    const pageArr = map.filter(page => page['codename'] === codename)
-    return pageArr[0]
-  } catch (err) {
-    console.error(err);
-  }
-
-}
-
 //FILTERS
 export function filterPageByCollection(root, params){
     const pageByCollection = root.item.elements.subpages.linkedItems.filter(

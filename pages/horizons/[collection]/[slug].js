@@ -1,78 +1,69 @@
 import styles from "../../../styles/Home.module.css";
 import deliveryClient from "../../../utilities/client";
-import RichText from "../../../components/RichText";
 import AppHeader from "../../../components/AppHeader";
 import AppFooter from "../../../components/AppFooter";
 import AppHero from "../../../components/AppHero";
-import AgendaItem from "../../../components/AgendaItem";
 import { useRouter } from "next/router";
+import { readFileSync } from "fs";
+import Content from "../../../components/Content";
 
-export default function AgendaItemDetail({ item }) {
+export default function ComposablePage({ page }) {
   const router = useRouter();
+  const elements = page.elements;
+
   return (
     <div className={styles.container}>
-      <AppHeader />
-      <AppHero />
-      <div className="w-full flex justify-center">
-        <div className="mt-8 sm:w-10/12 md:w-1/2">
-          <div
-            key={item.system.id}
-            className="text-left aspect-auto p-8 border border-gray-100 rounded-3xl bg-white dark:bg-gray-800 dark:border-gray-700 shadow-2xl shadow-gray-600/10 dark:shadow-none"
-          >
-            <span
-              className="tracking-wide font-medium text-gray-600 dark:text-gray-300 block md:px-4 transition hover:text-primary"
-              onClick={() => router.back()}
-              style={{ cursor: "pointer" }}
-            >
-              &lt; Back
-            </span>
-            <AgendaItem item={item} />
-            <RichText content={item.elements.description} />
-          </div>
-        </div>
-      </div>
+      <AppHeader collection={page.system.collection} hasExtendedNav={true} />
+
+      <main className={styles.main}>
+        <AppHero title={elements.title.value} />
+
+        <Content pageContent={page.elements.content} />
+        
+      </main>
+
       <AppFooter />
     </div>
   );
 }
 
-export async function getStaticPaths({ context }) {
-  const response = await deliveryClient
-    .items()
-    .type("agenda_item")
-    .elementsParameter(["url_slug"])
-    .toPromise();
+export async function getStaticPaths() {
+  const data = readFileSync("./nav.json", "utf8");
+  const map = JSON.parse(data);
+  const pageArr = map.filter(
+    (page) =>
+      page["value"]["type"] === "page" ||
+      page["value"]["type"] === "composable_page"
+  );
 
-  const agendaItems = response.data.items;
-  const agendaPaths = agendaItems.map((item) => {
+  const paths = pageArr.map((page) => {
     return {
       params: {
-        collection: item.system.collection,
-        slug: item.elements.url_slug.value,
+        collection: page.value.collection,
+        slug: page.value.slug,
       },
     };
   });
 
   return {
-    paths: agendaPaths,
+    paths: paths,
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  // ==start dynamic content==
   const response = await deliveryClient
     .items()
-    .equalsFilter("elements.url_slug", params.slug)
+    .equalsFilter("elements.url", params.slug)
     .collection(params.collection)
+    .depthParameter(6)
     .toPromise();
-  const item = response.data.items[0];
 
-  // ==end dynamic speakers list==
+  const page = response.data.items[0];
 
   return {
     props: {
-      item,
+      page,
     },
   };
 }

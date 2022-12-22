@@ -68,6 +68,7 @@ function buildMapObject(subpage, url) {
       slug: subpage.elements.url.value,
       collection: subpage.system.collection,
       language: subpage.system.language,
+      type: subpage.system.type
     },
   };
 }
