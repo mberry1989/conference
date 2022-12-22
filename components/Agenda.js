@@ -14,11 +14,11 @@ const Agenda = ({ agenda }) => {
         return (
           <>
             <Link
-              href={`${agenda.system.collection}/${item.elements.url_slug.value}`}
+              href={`${agenda.system.collection}/agenda/${item.elements.url_slug.value}`}
             >
               <div
                 key={item.system.id}
-                className="py-8 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between hover:cursor-pointer"
+                className="sm:flex justify-between hover:cursor-pointer"
               >
                 <AgendaItem item={item} />
               </div>
