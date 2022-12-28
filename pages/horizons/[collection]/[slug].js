@@ -1,4 +1,4 @@
-import styles from "../../../styles/Home.module.css";
+import styles from "@styles/Home.module.css";
 import deliveryClient from "@utils/client";
 import AppHeader from "@components/AppHeader";
 import AppFooter from "@components/AppFooter";

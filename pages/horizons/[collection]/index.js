@@ -5,7 +5,7 @@ import {
   getCollectionPathsFromEnv,
   filterContentBySystemType
 } from "@utils/helpers";
-import styles from "../../../styles/Home.module.css";
+import styles from "@styles/Home.module.css";
 import Agenda from "@components/Agenda";
 import Topic from "@components/Topics";
 import Venue from "@components/Venue";

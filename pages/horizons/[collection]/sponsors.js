@@ -1,4 +1,4 @@
-import styles from "../../../styles/Home.module.css";
+import styles from "@styles/Home.module.css";
 import Sponsor from "@components/Sponsor";
 import Topic from "@components/Topics";
 import AppHero from "@components/AppHero";
