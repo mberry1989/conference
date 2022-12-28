@@ -6,13 +6,13 @@ import {
   filterSubPageByUrl,
   getItemsByTypeAsync,
   filterItemsByCollection,
-} from "../../../utilities/helpers";
+} from "@utils/helpers";
 import styles from "../../../styles/Home.module.css";
-import Speaker from "../../../components/Speaker";
-import Topic from "../../../components/Topics";
-import AppHero from "../../../components/AppHero";
-import AppHeader from "../../../components/AppHeader";
-import AppFooter from "../../../components/AppFooter";
+import Speaker from "@components/Speaker";
+import Topic from "@components/Topics";
+import AppHero from "@components/AppHero";
+import AppHeader from "@components/AppHeader";
+import AppFooter from "@components/AppFooter";
 
 export default function Speakers({ eventPage, page, agendaSpeakers }) {
   const pageElements = page.elements;

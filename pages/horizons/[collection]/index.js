@@ -4,14 +4,14 @@ import {
   filterPageByCollection,
   getCollectionPathsFromEnv,
   filterContentBySystemType
-} from "../../../utilities/helpers";
+} from "@utils/helpers";
 import styles from "../../../styles/Home.module.css";
-import Agenda from "../../../components/Agenda";
-import Topic from "../../../components/Topics";
-import Venue from "../../../components/Venue";
-import AppHero from "../../../components/AppHero";
-import AppHeader from "../../../components/AppHeader";
-import AppFooter from "../../../components/AppFooter";
+import Agenda from "@components/Agenda";
+import Topic from "@components/Topics";
+import Venue from "@components/Venue";
+import AppHero from "@components/AppHero";
+import AppHeader from "@components/AppHeader";
+import AppFooter from "@components/AppFooter";
 
 export default function Home({ page }) {
   const elements = page.elements;

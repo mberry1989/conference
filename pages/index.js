@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import deliveryClient from '../utilities/client'
-import AppHero from '../components/AppHero'
+import deliveryClient from '@utils/client'
+import AppHero from '@components/AppHero'
 
 export default function Home({page}) {
   const title = page.elements.title.value

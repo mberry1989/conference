@@ -1,5 +1,5 @@
 import { writeFile } from "fs"
-import { getRootByCodenameAsync } from "../../utilities/helpers";
+import { getRootByCodenameAsync } from "@utils/helpers";
 
 export default async function handler(req, res) {
   if (req.query.secret !== process.env.NAVBUILDER_SECRET) {
@@ -64,11 +64,13 @@ function buildMapObject(subpage, url) {
   return {
     codename: subpage.system.codename,
     value: {
+      title: subpage.elements.title.value,
       url: url,
       slug: subpage.elements.url.value,
       collection: subpage.system.collection,
       language: subpage.system.language,
-      type: subpage.system.type
+      type: subpage.system.type,
+      showInNavigation: subpage.elements.show_in_navigation.value[0].codename
     },
   };
 }

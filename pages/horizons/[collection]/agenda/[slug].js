@@ -1,10 +1,10 @@
 import styles from "../../../../styles/Home.module.css";
-import deliveryClient from "../../../../utilities/client";
-import RichText from "../../../../components/RichText";
-import AppHeader from "../../../../components/AppHeader";
-import AppFooter from "../../../../components/AppFooter";
-import AppHero from "../../../../components/AppHero";
-import AgendaItem from "../../../../components/AgendaItem";
+import deliveryClient from "@utils/client";
+import RichText from "@components/RichText";
+import AppHeader from "@components/AppHeader";
+import AppFooter from "@components/AppFooter";
+import AppHero from "@components/AppHero";
+import AgendaItem from "@components/AgendaItem";
 import { useRouter } from "next/router";
 
 export default function AgendaItemDetail({ item }) {

@@ -1,10 +1,10 @@
 import styles from "../../../styles/Home.module.css";
-import Sponsor from "../../../components/Sponsor";
-import Topic from "../../../components/Topics";
-import AppHero from "../../../components/AppHero";
+import Sponsor from "@components/Sponsor";
+import Topic from "@components/Topics";
+import AppHero from "@components/AppHero";
 import { useRouter } from "next/router";
-import AppHeader from "../../../components/AppHeader";
-import AppFooter from "../../../components/AppFooter";
+import AppHeader from "@components/AppHeader";
+import AppFooter from "@components/AppFooter";
 import {
   filterContentBySystemType,
   filterItemsByCollection,
