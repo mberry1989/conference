@@ -1,11 +1,12 @@
 import styles from "../../../styles/Home.module.css";
-import deliveryClient from "../../../utilities/client";
-import AppHeader from "../../../components/AppHeader";
-import AppFooter from "../../../components/AppFooter";
-import AppHero from "../../../components/AppHero";
+import deliveryClient from "@utils/client";
+import AppHeader from "@components/AppHeader";
+import AppFooter from "@components/AppFooter";
+import AppHero from "@components/AppHero";
 import { useRouter } from "next/router";
+import Content from "@components/Content";
 import { readFileSync } from "fs";
-import Content from "../../../components/Content";
+
 
 export default function ComposablePage({ page }) {
   const router = useRouter();
@@ -35,8 +36,12 @@ export async function getStaticPaths() {
       page["value"]["type"] === "page" ||
       page["value"]["type"] === "composable_page"
   );
+  
+  // avoids dynamic [slug] conflicts for composable pages
+  const navPages = pageArr.filter(page => page["value"]["title"] !== "Speakers" && 
+  page["value"]["title"] !== "Sponsors")
 
-  const paths = pageArr.map((page) => {
+  const paths = navPages.map((page) => {
     return {
       params: {
         collection: page.value.collection,
